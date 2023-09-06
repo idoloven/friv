@@ -1,0 +1,17 @@
+/* Add this CSS to your stylesheet */
+.image-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px; /* Adjust the gap between the image and text */
+    font-size: 16px; /* Adjust the font size as needed */
+  }
+  
+  .image-button img {
+    max-width: 24px; /* Adjust the image size as needed */
+    max-height: 24px;
+  }
+  

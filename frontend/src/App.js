@@ -12,6 +12,8 @@ import {
 import Home from "./pages/home/Home";
 import Personal from "./pages/personal/Personal";
 import Leaderboard from "./pages/leaderboard/Leaderboard";
+import Unknown from "./pages/unknown/Unknown";
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -19,6 +21,7 @@ const router = createBrowserRouter(
       <Route index element={<Home />} />
       <Route path="Profile" element={<Personal />} />
       <Route path="Leaderboard" element={<Leaderboard />} />
+      <Route path="*" element={<Unknown />} />
     </Route>
   )
 );
