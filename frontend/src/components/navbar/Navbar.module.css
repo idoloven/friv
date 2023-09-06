@@ -1,0 +1,12 @@
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+    top: 0;
+    left: 0;
+    height: 100vh;
+}
+.logo {
+    margin: 20px 0;
+}
