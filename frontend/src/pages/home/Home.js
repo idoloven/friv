@@ -1,8 +1,24 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import logo from '../../images/friv_logo.png'; // Import the image
 import GameSquare from '../../components/gameSquare/GameSquare';
 
 export default function Home() {
+  const MinuteInMiliSeconds = 60000
+  const GamesApiUrl = "http://localhost:8000/api/games/"
+  
+  const [games, setGames] = useState([]);
+  useEffect(() => {
+    const fetchGames = async () => {
+      const response = await fetch(GamesApiUrl);
+      const data = await response.json();
+      setGames(data);
+    };
+    fetchGames();
+    const interval = setInterval(fetchGames, MinuteInMiliSeconds);
+    // Clean up the interval when the component is unmounted
+    return () => clearInterval(interval);
+  }, []);
+
   const logoStyle = {
     backgroundImage: `url(${logo})`,
     backgroundSize: 'cover',
@@ -15,37 +31,22 @@ export default function Home() {
     Zindex: '6',
   }
 
-  const fillerStyle = {
-    // display: 'flex',
-    // justifyContent: 'center',
-    // alignItems: 'center',
-    backgroundColor: 'transparent',
-    width: '133px',
-    aspectRatio: '1',
-  }
-
-  let numberOfGames = 6
+  // fill the rest of the grid with dasses
+  let numberOfGames = games.length
   const normalGridSize = 18
-  const apps = [{ "name": "asd" },{ "name": "asd" },{ "name": "asd" }]
+  let numberOfDas = normalGridSize - numberOfGames
+  let fillers = []
+  for (let i = 0; i < numberOfDas; i++){
+    fillers.push(<GameSquare></GameSquare>)
+  }
   return (
     <>
-     {apps.map((app) => 
-        <div style = {fillerStyle}>{app["name"]}</div>
+     {games.map((game) => 
+       <GameSquare gameName={game["game_name"]} gameUrl = {game["game_url"]} logoName = {game["logo_name"]}></GameSquare>
       )
         }
-      <GameSquare label='das'></GameSquare>
       <div style={logoStyle}></div>
-      <GameSquare label='1'></GameSquare>
-      <GameSquare label='2'></GameSquare>
-      <GameSquare label='3'></GameSquare>
-      <GameSquare label='4'></GameSquare>
-      <GameSquare label='5'></GameSquare>
-      <GameSquare label='6'></GameSquare>
-      <GameSquare label='7'></GameSquare>
-      <GameSquare label='8'></GameSquare>
-      <GameSquare label='9'></GameSquare>
-      <GameSquare label='10'></GameSquare>
-      <GameSquare label='11'></GameSquare>
+      {fillers}
     </>
   );
 }

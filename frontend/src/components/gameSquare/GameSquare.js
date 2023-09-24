@@ -3,7 +3,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
 import backgroundImage from '../../images/das.png'; // Import the image
 
-function GameSquare({label }) {
+function GameSquare({gameName, gameUrl, logoName}) {
   const [isMounted, setIsMounted] = useState(false);
   const [iframeVisible, setIframeVisible] = useState(false);
 
@@ -29,15 +29,20 @@ function GameSquare({label }) {
     event.target.style.opacity = '1';
   };
 
+  if (logoName === undefined) {
+    logoName = "das.png"
+    gameUrl = "https://www.example.com"
+  }
+  const logoUrl = "http://localhost:8000/static/" + logoName
   const buttonStyle = {
     color: 'white',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundImage: `url(${backgroundImage})`,
+    backgroundImage: `url(${logoUrl})`,
     backgroundSize: 'cover',
     border: '1px solid rgba(0, 0, 0, 0.8)',
-    fontSize: '30px',
+    fontSize: '20px',
     aspectRatio: '1',
     borderRadius: '10px',
     cursor: 'pointer',
@@ -81,7 +86,7 @@ function GameSquare({label }) {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      {label}
+      {gameName}
     </button>
     <div style={overlayStyle}>
         {isMounted ?
@@ -92,8 +97,8 @@ function GameSquare({label }) {
         </div> :
        null}
         <iframe
-          src="https://www.example.com" // Replace with the URL you want to display
-          title="My Iframe"
+          src={gameUrl} // Replace with the URL you want to display
+          title={gameName}
           onLoad={handleIframeLoad}
           style={iframeStyle}
         ></iframe>
@@ -101,4 +106,9 @@ function GameSquare({label }) {
     </>
   );
 }
+
+GameSquare.defaultProps = {
+    logo_name: 'das.png',
+  };
+
 export default GameSquare;
