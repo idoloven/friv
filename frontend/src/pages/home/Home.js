@@ -1,46 +1,51 @@
 import React from 'react';
-import backgroundImage from '../../images/das.png'; // Import the image
+import logo from '../../images/friv_logo.png'; // Import the image
+import GameSquare from '../../components/gameSquare/GameSquare';
 
 export default function Home() {
-  const buttonStyle = {
-    background: `url(${backgroundImage}) no-repeat center center`,
-    backgroundSize: 'contain',
-    width: '200px', // Set the width and height as needed
-    height: '200px',
-    border: 'none',
-    cursor: 'pointer',
-  };
   const logoStyle = {
-    // justifyItems: 'center',
-    // alignItems: 'center',
-    gridColumn: '3',
-    gridRow: '3',
-    display: 'flex',
-    // aspectRatio: '1',
+    backgroundImage: `url(${logo})`,
+    backgroundSize: 'cover',
+    width: '425px',
+    gridColumnStart: '3',
+    gridColumnEnd: '6',
+    gridRowStart: '2',
+    gridRowEnd: '2',
+    borderRadius: '10px',
+    Zindex: '6',
   }
-  const homeStyle = {
+
+  const fillerStyle = {
+    // display: 'flex',
+    // justifyContent: 'center',
+    // alignItems: 'center',
+    backgroundColor: 'transparent',
+    width: '133px',
     aspectRatio: '1',
-    //paddingTop: '100%',
   }
 
   let numberOfGames = 6
-  const gridSize = 25
-  const apps = [{ "name": "asd" },{ "name": "asd" },{ "name": "asd" },{ "name": "asd" },{ "name": "asd" },{ "name": "asd" },{ "name": "asd" },{ "name": "asd" },{ "name": "asd" },{ "name": "asd" },{ "name": "asd" },{ "name": "asd" },{ "name": "asd" },{ "name": "asd" },{ "name": "asd" },{ "name": "asd" }, { "name": "asdasd" }]
+  const normalGridSize = 18
+  const apps = [{ "name": "asd" },{ "name": "asd" },{ "name": "asd" }]
   return (
     <>
-      {/* <button style={buttonStyle} onClick={() => alert('Button clicked')}></button> */}
-      <div style={logoStyle}>Gen Games</div>
-      <div style={homeStyle}>hi1</div>
-      <div style={homeStyle}>hi2</div>
-      <div style={homeStyle}>hi3</div>
-      <div style={homeStyle}>hi4</div>
-      <div style={homeStyle}>hi5</div>
-      <div style={homeStyle}>hi6</div>
-      {/* {apps.map((app) => 
-        <div>{app["name"]}</div>
+     {apps.map((app) => 
+        <div style = {fillerStyle}>{app["name"]}</div>
       )
-        } */}
-
+        }
+      <GameSquare label='das'></GameSquare>
+      <div style={logoStyle}></div>
+      <GameSquare label='1'></GameSquare>
+      <GameSquare label='2'></GameSquare>
+      <GameSquare label='3'></GameSquare>
+      <GameSquare label='4'></GameSquare>
+      <GameSquare label='5'></GameSquare>
+      <GameSquare label='6'></GameSquare>
+      <GameSquare label='7'></GameSquare>
+      <GameSquare label='8'></GameSquare>
+      <GameSquare label='9'></GameSquare>
+      <GameSquare label='10'></GameSquare>
+      <GameSquare label='11'></GameSquare>
     </>
   );
 }
