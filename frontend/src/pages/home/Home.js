@@ -19,16 +19,29 @@ export default function Home() {
     return () => clearInterval(interval);
   }, []);
 
-  const logoStyle = {
-    backgroundImage: `url(${logo})`,
-    backgroundSize: 'cover',
-    width: '425px',
-    gridColumnStart: '3',
-    gridColumnEnd: '6',
-    gridRowStart: '2',
-    gridRowEnd: '2',
-    borderRadius: '10px',
-    Zindex: '6',
+  const style = {
+    window:{
+      flex: '1',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    logoStyle:{
+      backgroundImage: `url(${logo})`,
+      backgroundSize: 'cover',
+      width: '425px',
+      gridColumnStart: '3',
+      gridColumnEnd: '6',
+      gridRowStart: '2',
+      gridRowEnd: '2',
+      borderRadius: '10px',
+      Zindex: '6',
+    },
+    gridStyle:{
+      display: 'grid',
+      gridTemplateColumns: 'auto auto auto auto auto auto auto',
+      gap: '10px',
+    }
   }
 
   // fill the rest of the grid with dasses
@@ -40,13 +53,15 @@ export default function Home() {
     fillers.push(<GameSquare></GameSquare>)
   }
   return (
-    <>
-     {games.map((game) => 
-       <GameSquare gameName={game["game_name"]} gameUrl = {game["game_url"]} logoName = {game["logo_name"]}></GameSquare>
-      )
-        }
-      <div style={logoStyle}></div>
-      {fillers}
-    </>
+    <div style={style.window}>
+      <div style={style.gridStyle}>
+      {games.map((game) => 
+        <GameSquare gameName={game["game_name"]} gameUrl = {game["game_url"]} logoName = {game["logo_name"]}></GameSquare>
+        )
+          }
+        <div style={style.logoStyle}></div>
+        {fillers}
+      </div>
+    </div>
   );
 }
