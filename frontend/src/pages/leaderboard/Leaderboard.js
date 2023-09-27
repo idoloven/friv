@@ -1,7 +1,7 @@
 import { fontFamily } from "@mui/system";
 import LeaderboardElement from "../../components/leaderBoardElement/LeaderBoardElement"; 
 
-export default function Home() {
+export default function LeaderBoard() {
   const style = {
     titels: {
       color: 'white',
@@ -21,17 +21,37 @@ export default function Home() {
       justifyContent: 'center',
       width: '100%',
     },
+    gamesBar:{
+      display:'flex',
+      backgroundColor: 'black',
+      width: '85%',
+    },
+    gameTab:{
+      borderColor: 'white',
+      color: 'white',
+    }
   }
 
-  const players = [{'name':'catom'}, {'name':'denis'}, {'name':'daniel'}]
+  const players = [{'name':'catom', 'anaf':'berashit', 'mador':'37', 'score':111}, {'name':'denis', 'anaf':'berashit', 'mador':'13', 'score':333}, {'name':'dp', 'anaf':'almog', 'mador':'20', 'score':222}]
+  function compareScores(playerA, playerB) {
+    return playerA["score"] - playerB["score"];
+  }
+  players.sort(compareScores);
+  players.forEach(function (player, index) {
+    player.rank = index + 1
+  })
+  
+  const games = ["chess", "icy tower", "monkeytype", "rocket league", "cuphead"]
+
   return (
     <div style = {style.window}>
+     
       <div style={style.listStyle}>
         <div style={style.titels}>
-          <div>#</div>
-          <div style={{marginLeft:'30px'}}>Name</div>
-          <div style={{marginLeft:'10vw'}}>Anaf</div>
-          <div style={{marginLeft:'10vw'}}>Mador</div>
+          <div style={{width:'6.5%'}}>#</div>
+          <div style={{width:'18%'}}>Name</div>
+          <div style={{width:'19.5%'}}>Anaf</div>
+          <div style={{width:'20%'}}>Mador</div>
           <div style={{marginLeft:'auto'}}>Score</div>
         </div>
         {players.map((player) => 
