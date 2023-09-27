@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import LeaderboardElement from "../../components/leaderBoardElement/LeaderBoardElement"; 
 
 export default function LeaderBoard() {
-  const [game, setGame] = useState([]);
+  const [currentGame, setCurrentGame] = useState("chess");
   const style = {
     titels: {
       color: 'white',
@@ -34,16 +34,31 @@ export default function LeaderBoard() {
     },
     gameTab:{
       color: 'black',
-      paddingRight: '20px',
+      width: 'fit-content',
+      paddingRight: '10px',
+      paddingLeft: '10px',
       display: 'flex',
+      cursor: 'pointer',
+      borderStyle: 'none',
+      fontSize: '20px',
+      justifyContent: 'center',
+    },
+    selectedGameTab:{
+      backgroundColor: '#e7d3ed', 
+      color: 'black',
+      width: 'fit-content',
+      paddingRight: '10px',
+      paddingLeft: '10px',
+      display: 'flex',
+      justifyContent: 'center',
       cursor: 'pointer',
       borderStyle: 'none',
       fontSize: '20px'
     }
   }
 
-  
-  const players1 = [{'name':'catom1', 'anaf':'berashit', 'mador':'37', 'score':111}, {'name':'denis1', 'anaf':'berashit', 'mador':'13', 'score':333}, {'name1':'dp', 'anaf':'almog', 'mador':'20', 'score':222}]
+  // receive from back
+  const players1 = [{'name':'catom1', 'anaf':'berashit', 'mador':'37', 'score':111}, {'name':'denis1', 'anaf':'berashit', 'mador':'13', 'score':333}, {'name':'dp1', 'anaf':'almog', 'mador':'20', 'score':222}]
   const players = [{'name':'catom', 'anaf':'berashit', 'mador':'37', 'score':111}, {'name':'denis', 'anaf':'berashit', 'mador':'13', 'score':333}, {'name':'dp', 'anaf':'almog', 'mador':'20', 'score':222}]
   function compareScores(playerA, playerB) {
     return playerA["score"] - playerB["score"];
@@ -53,13 +68,16 @@ export default function LeaderBoard() {
     player.rank = index + 1
   })
   
+  const gamesMap = {"chess": players, "icy tower": players1, "monkeytype": players1, "rocket league": players, "cuphead": players}
   const games = ["chess", "icy tower", "monkeytype", "rocket league", "cuphead"]
-
   return (
     <div style = {style.window}>
       <div style = {style.gamesBar}>
       {games.map((game) => 
-        <button style={style.gameTab}>{game}</button>
+        <button 
+        style={game === currentGame ? style.selectedGameTab : style.gameTab}
+        onClick={() => {setCurrentGame(game)}}
+        >{game}</button>
         )
           }
       </div>
@@ -71,9 +89,9 @@ export default function LeaderBoard() {
           <div style={{width:'20%'}}>Mador</div>
           <div style={{marginLeft:'auto'}}>Score</div>
         </div>
-        {players.map((player) => 
+        {gamesMap[currentGame] ? gamesMap[currentGame].map((player) => 
             <LeaderboardElement player={player}></LeaderboardElement>
-        )}
+        ) : null}
         
       </div>
     </div>

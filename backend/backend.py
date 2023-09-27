@@ -10,6 +10,14 @@ class Game(BaseModel):
     game_url: str
     logo_name: str
 
+    
+class User(BaseModel):
+    username: str
+    profile_photo_name: str
+    anaf: str
+    mador: str
+    scores: List
+    
 games_list = [
     {'game_name': 'chess','game_url': "https://www.example.com", 'logo_name': 'chess.png'},
     {'game_name': 'monkeytype','game_url': "https://www.example.com", 'logo_name': 'monkeytype.png'},
@@ -35,3 +43,8 @@ app.add_middleware(
 @app.get("/api/games/", response_model=List[Game])
 def get_games():
     return games
+
+#think about api calls, should receive from games scores.
+# @app.get("/api/user/", response_model=List[Game])
+# def get_games():
+#     return games
