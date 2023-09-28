@@ -18,6 +18,7 @@ function GameSquare({gameName, gameUrl, logoName}) {
 
   const closeIframe = () => {
     setIframeVisible(false);
+    setIframeFullscreen(false);
   };
 
   const handleMouseEnter = (event) => {
