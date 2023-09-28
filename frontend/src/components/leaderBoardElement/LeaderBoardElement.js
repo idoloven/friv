@@ -1,7 +1,7 @@
-import { AspectRatio } from '@mui/icons-material';
-import React from 'react';
+import React from "react";
 
-function LeaderboardElement({player}) {
+function LeaderboardElement({player, setDisplayedProfile, setPosition}) {
+
     const style = {
         leaderboardElementStyle:{
           backgroundColor: 'rgba(0,0,0,0.5)',
@@ -16,6 +16,7 @@ function LeaderboardElement({player}) {
           borderWidth: '1px',
           borderColor: '#e7d3ed',
           borderStyle: 'solid',
+          zIndex: '6'
         },
         profilePicstyle:{
           borderRadius: '10px',
@@ -25,13 +26,13 @@ function LeaderboardElement({player}) {
           backgroundSize: 'cover',
           marginRight: '5px',
           borderStyle: 'none'
-        }
+        },
       }
     
     return (
       <div style={style.leaderboardElementStyle}>
           <div style={{width:'4%'}}>{player.rank}</div>
-          <button style={style.profilePicstyle}></button>
+          <button style={style.profilePicstyle} onClick={(e) => {setDisplayedProfile(player.name); setPosition({ x: e.clientX, y: e.clientY })}}></button>
           <div style={{width:'17.5%'}}>{player.name}</div>
           <div style={{width:'20%'}}>{player.anaf}</div>
           <div style={{width:'20%'}}>{player.mador}</div>

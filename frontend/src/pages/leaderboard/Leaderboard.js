@@ -1,8 +1,28 @@
-import React, { useState } from "react";
-import LeaderboardElement from "../../components/leaderBoardElement/LeaderBoardElement"; 
+import React, { useState, useEffect } from 'react';
+import LeaderboardElement from "../../components/leaderBoardElement/LeaderBoardElement";
+import ProfileSquare from "../../components/profileSquare/ProfileSquare";
 
 export default function LeaderBoard() {
   const [currentGame, setCurrentGame] = useState("chess");
+  const [displayedProfile, setDisplayedProfile] = useState('none');
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  
+  // Check if the click target is not a button
+  const handleClick = (e) => {
+    if (e.target.tagName !== 'BUTTON') {
+      setDisplayedProfile('none');
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('click', handleClick);
+
+    return () => {
+      // Remove the event listeners when the component unmounts
+      document.removeEventListener('click', handleClick);
+    };
+  }, []);
+
   const style = {
     titels: {
       color: 'white',
@@ -54,7 +74,7 @@ export default function LeaderBoard() {
       cursor: 'pointer',
       borderStyle: 'none',
       fontSize: '20px'
-    }
+    },
   }
 
   // receive from back
@@ -90,7 +110,10 @@ export default function LeaderBoard() {
           <div style={{marginLeft:'auto'}}>Score</div>
         </div>
         {gamesMap[currentGame] ? gamesMap[currentGame].map((player) => 
-            <LeaderboardElement player={player}></LeaderboardElement>
+          <>
+            <ProfileSquare player={player} displayedProfile={displayedProfile} position={position} ></ProfileSquare>
+            <LeaderboardElement player={player} setDisplayedProfile={setDisplayedProfile} setPosition={setPosition}></LeaderboardElement>
+          </>
         ) : null}
         
       </div>

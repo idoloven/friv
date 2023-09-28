@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
+import FullscreenIcon from '@mui/icons-material/Fullscreen';
 import IconButton from '@mui/material/IconButton';
-import backgroundImage from '../../images/das.png'; // Import the image
 
 function GameSquare({gameName, gameUrl, logoName}) {
   const [isMounted, setIsMounted] = useState(false);
+  const [iframeFullscreen, setIframeFullscreen] = useState(false)
   const [iframeVisible, setIframeVisible] = useState(false);
 
   const handleIframeLoad = () => { //waits for the iframe to load and then render the top div
@@ -48,7 +49,7 @@ function GameSquare({gameName, gameUrl, logoName}) {
     cursor: 'pointer',
     zIndex: '6',
     width: '133px',
-    transition: 'width 0.5s', // Add opacity transition
+    transition: 'width 0.5s',
   }
 
   const overlayStyle = {
@@ -66,16 +67,18 @@ function GameSquare({gameName, gameUrl, logoName}) {
 
   const iframeStyle = {
     border: 'none',
-    width: '90%', // Adjust the width as needed
-    height: '90vh', // Adjust the height as needed
+    width: iframeFullscreen ? '100%' : '90%', // Adjust the width as needed
+    height: iframeFullscreen ? '100vh' : '90vh', // Adjust the height as needed
     borderRadius: '0px 0px 10px 10px',
+    transition: 'width 0.1s',
   };
 
   
   const frameTopStyle = {
-   width: '90%',
+   width: iframeFullscreen ? '100%' : '90%',
    backgroundColor: 'white',
-   borderRadius: '10px 10px 0px 0px'
+   borderRadius: '10px 10px 0px 0px',
+   transition: 'width 0.1s',
   };
 
   return (
@@ -93,6 +96,9 @@ function GameSquare({gameName, gameUrl, logoName}) {
         <div style={frameTopStyle}>
         <IconButton onClick={closeIframe} style={{ color: 'red' }}>
           <CloseIcon />
+        </IconButton>
+        <IconButton onClick={() => {setIframeFullscreen(!iframeFullscreen)}}>
+          <FullscreenIcon />
         </IconButton>
         </div> :
        null}
