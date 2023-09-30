@@ -1,24 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { useOutletContext } from "react-router-dom";
 import logo from '../../images/friv_logo.png'; // Import the image
 import GameSquare from '../../components/gameSquare/GameSquare';
 
 export default function Home() {
-  const MinuteInMiliSeconds = 60000
-  const GamesApiUrl = "http://localhost:8000/api/games/"
-  
-  const [games, setGames] = useState([]);
-  useEffect(() => {
-    const fetchGames = async () => {
-      const response = await fetch(GamesApiUrl);
-      const data = await response.json();
-      setGames(data);
-    };
-    fetchGames();
-    const interval = setInterval(fetchGames, MinuteInMiliSeconds);
-    // Clean up the interval when the component is unmounted
-    return () => clearInterval(interval);
-  }, []);
-
+  const [games,] = useOutletContext();
   const style = {
     window:{
       flex: '1',
@@ -50,13 +36,15 @@ export default function Home() {
   let numberOfDas = normalGridSize - numberOfGames
   let fillers = []
   for (let i = 0; i < numberOfDas; i++){
-    fillers.push(<GameSquare></GameSquare>)
+    fillers.push(<React.Fragment key={i}><GameSquare></GameSquare></React.Fragment>)
   }
   return (
     <div style={style.window}>
       <div style={style.gridStyle}>
       {games.map((game) => 
-        <GameSquare gameName={game["game_name"]} gameUrl = {game["game_url"]} logoName = {game["logo_name"]}></GameSquare>
+        <React.Fragment key={game["game_name"]}>
+          <GameSquare gameName={game["game_name"]} gameUrl = {game["game_url"]} logoName = {game["logo_name"]}></GameSquare>
+        </React.Fragment>
         )
           }
         <div style={style.logoStyle}></div>

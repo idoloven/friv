@@ -1,11 +1,38 @@
 import React, { useState, useEffect } from 'react';
+import { useOutletContext } from "react-router-dom";
 import LeaderboardElement from "../../components/leaderBoardElement/LeaderBoardElement";
 import ProfileSquare from "../../components/profileSquare/ProfileSquare";
 
 export default function LeaderBoard() {
+  const [games,] = useOutletContext();
   const [currentGame, setCurrentGame] = useState("chess");
   const [displayedProfile, setDisplayedProfile] = useState('none');
   const [position, setPosition] = useState({ x: 0, y: 0 });
+
+  const MinuteInMiliSeconds = 60000
+  const LeaderboardApiUrl = "http://localhost:8000/api/leaderboard/?game="
+  
+  const [leaderboard, setLeaderboard] = useState([]);
+  useEffect(() => {
+    const fetchLeaderboard = async () => {
+      try {
+      const response = await fetch(LeaderboardApiUrl + currentGame);
+      const data = await response.json();
+      const leaderboardWithRank = data.map((player, index) => ({
+        ...player,
+        rank: index + 1
+    }));
+    setLeaderboard(leaderboardWithRank);
+} catch (error) {
+    // Handle errors if any
+    console.error('Error fetching leaderboard data: ', error);
+}
+    };
+    fetchLeaderboard();
+    const interval = setInterval(fetchLeaderboard, MinuteInMiliSeconds);
+    // Clean up the interval when the component is unmounted
+    return () => clearInterval(interval);
+  }, [currentGame]);
   
   // Check if the click target is not a button
   const handleClick = (e) => {
@@ -76,28 +103,17 @@ export default function LeaderBoard() {
       fontSize: '20px'
     },
   }
-
-  // receive from back
-  const players1 = [{'name':'catom1', 'anaf':'berashit', 'mador':'37', 'score':111}, {'name':'denis1', 'anaf':'berashit', 'mador':'13', 'score':333}, {'name':'dp1', 'anaf':'almog', 'mador':'20', 'score':222}]
-  const players = [{'name':'catom', 'anaf':'berashit', 'mador':'37', 'score':111}, {'name':'denis', 'anaf':'berashit', 'mador':'13', 'score':333}, {'name':'dp', 'anaf':'almog', 'mador':'20', 'score':222}]
-  function compareScores(playerA, playerB) {
-    return playerA["score"] - playerB["score"];
-  }
-  players.sort(compareScores);
-  players.forEach(function (player, index) {
-    player.rank = index + 1
-  })
-  
-  const gamesMap = {"chess": players, "icy tower": players1, "monkeytype": players1, "rocket league": players, "cuphead": players}
-  const games = ["chess", "icy tower", "monkeytype", "rocket league", "cuphead"]
+ 
   return (
     <div style = {style.window}>
       <div style = {style.gamesBar}>
       {games.map((game) => 
+       <React.Fragment key={game.game_name}>
         <button 
-        style={game === currentGame ? style.selectedGameTab : style.gameTab}
-        onClick={() => {setCurrentGame(game)}}
-        >{game}</button>
+        style={game.game_name === currentGame ? style.selectedGameTab : style.gameTab}
+        onClick={() => {setCurrentGame(game.game_name); setDisplayedProfile('none')}}
+        >{game.game_name}</button>
+        </React.Fragment>
         )
           }
       </div>
@@ -109,11 +125,11 @@ export default function LeaderBoard() {
           <div style={{width:'20%'}}>Mador</div>
           <div style={{marginLeft:'auto'}}>Score</div>
         </div>
-        {gamesMap[currentGame] ? gamesMap[currentGame].map((player) => 
-          <>
+        {leaderboard ? leaderboard.map((player) => 
+          <React.Fragment key={player.username}>
             <ProfileSquare player={player} displayedProfile={displayedProfile} position={position} ></ProfileSquare>
-            <LeaderboardElement player={player} setDisplayedProfile={setDisplayedProfile} setPosition={setPosition}></LeaderboardElement>
-          </>
+            <LeaderboardElement player={player} setDisplayedProfile={setDisplayedProfile} setPosition={setPosition} score={player.scores[currentGame]}></LeaderboardElement>
+          </React.Fragment>
         ) : null}
         
       </div>

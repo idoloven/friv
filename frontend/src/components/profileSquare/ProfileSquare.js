@@ -1,11 +1,11 @@
 import React from "react";
 
 function ProfileSquare({player, displayedProfile, position}) {
-
+    const apiStaticProfilePicsFolder = "http://localhost:8000/static/user_profile_pics/"
     const style = {
         profileStyle:{
             backgroundColor: 'black',
-            display: player.name === displayedProfile ? 'flex' : 'none',
+            display: player.username === displayedProfile ? 'flex' : 'none',
             zIndex: '100',
             width: '25vw',
             aspectRatio: '1',
@@ -26,7 +26,7 @@ function ProfileSquare({player, displayedProfile, position}) {
             marginBottom: '10px',
             marginRight: 'auto',
             marginLeft: 'auto',
-            backgroundImage: `url(${"http://localhost:8000/static/das.png"})`,
+            backgroundImage: `url(${apiStaticProfilePicsFolder + player.profile_pic_name})`,
             backgroundSize: 'cover',
             borderStyle: 'solid',
             borderColor: 'white',
@@ -36,7 +36,7 @@ function ProfileSquare({player, displayedProfile, position}) {
     return (
       <div style={style.profileStyle}>
           <div style={style.mediumProfileImageStyle}></div>
-          <div>{player.name}</div>
+          <div>{player.username}</div>
       </div>
     );
 }

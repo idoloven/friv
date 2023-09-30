@@ -35,7 +35,8 @@ function GameSquare({gameName, gameUrl, logoName}) {
     logoName = "das.png"
     gameUrl = "https://www.example.com"
   }
-  const logoUrl = "http://localhost:8000/static/" + logoName
+
+  const logoUrl = "http://localhost:8000/static/game_logos/" + logoName
   const buttonStyle = {
     color: 'white',
     display: 'flex',

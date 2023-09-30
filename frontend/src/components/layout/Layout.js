@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 import DataWindow from '../dataWindow/DataWindow';
 import Navbar from "../navbar/Navbar";
 import Waves from "../waves/Waves";
@@ -6,6 +6,7 @@ import Waves from "../waves/Waves";
 import styled, { keyframes } from 'styled-components';
 
 export default function Layout() {
+  
   const gradient = keyframes`
   0% {
     background-position: 0% 0%;
@@ -34,7 +35,7 @@ export default function Layout() {
     <>
       <AnimatedBackground>
         <Navbar />
-        <DataWindow />
+        <DataWindow/>
         <Waves/>
       </AnimatedBackground>
     </>

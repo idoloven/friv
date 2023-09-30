@@ -1,7 +1,7 @@
 import React from "react";
 
-function LeaderboardElement({player, setDisplayedProfile, setPosition}) {
-
+function LeaderboardElement({player, setDisplayedProfile, setPosition, score}) {
+    const apiStaticProfilePicsFolder = "http://localhost:8000/static/user_profile_pics/"
     const style = {
         leaderboardElementStyle:{
           backgroundColor: 'rgba(0,0,0,0.5)',
@@ -22,7 +22,7 @@ function LeaderboardElement({player, setDisplayedProfile, setPosition}) {
           borderRadius: '10px',
           aspectRatio: '1',
           width: '2%',
-          backgroundImage: `url(${"http://localhost:8000/static/das.png"})`,
+          backgroundImage: `url(${apiStaticProfilePicsFolder + player.profile_pic_name})`,
           backgroundSize: 'cover',
           marginRight: '5px',
           borderStyle: 'none'
@@ -32,11 +32,11 @@ function LeaderboardElement({player, setDisplayedProfile, setPosition}) {
     return (
       <div style={style.leaderboardElementStyle}>
           <div style={{width:'4%'}}>{player.rank}</div>
-          <button style={style.profilePicstyle} onClick={(e) => {setDisplayedProfile(player.name); setPosition({ x: e.clientX, y: e.clientY })}}></button>
-          <div style={{width:'17.5%'}}>{player.name}</div>
+          <button style={style.profilePicstyle} onClick={(e) => {setDisplayedProfile(player.username); setPosition({ x: e.clientX, y: e.clientY })}}></button>
+          <div style={{width:'17.5%'}}>{player.username}</div>
           <div style={{width:'20%'}}>{player.anaf}</div>
           <div style={{width:'20%'}}>{player.mador}</div>
-          <div style={{marginLeft:'auto', marginRight:'25px'}}>{player.score}</div>
+          <div style={{marginLeft:'auto', marginRight:'25px'}}>{score}</div>
       </div>
     );
 }
