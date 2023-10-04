@@ -19,7 +19,7 @@ function LeaderboardElement({player, setDisplayedProfile, setPosition, score}) {
           zIndex: '6'
         },
         profilePicstyle:{
-          borderRadius: '10px',
+          borderRadius: '100%',
           aspectRatio: '1',
           width: '2%',
           backgroundImage: `url(${apiStaticProfilePicsFolder + player.profile_pic_name})`,
