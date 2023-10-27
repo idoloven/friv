@@ -73,14 +73,12 @@ def get_leaderboard(game):
     leaderboard = sorted(users, key=lambda user: user.scores[game], reverse=True) #sort users by game score
     return leaderboard
 
-<<<<<<< Updated upstream
 @app.post("/api/change_image/")
 async def upload_file(file: UploadFile = File(...)):
     # Process the uploaded file (save it, etc.)
     # For example, save the file with its original name
     with open('./static/user_profile_pics/'+file.filename, "wb") as f:
         f.write(file.file.read())
-=======
 
 @app.post("/api/stats")
 async def upload_csv(file: UploadFile = File(...)):
@@ -88,4 +86,3 @@ async def upload_csv(file: UploadFile = File(...)):
     with open(file_path, "wb") as csv_file:
         csv_file.write(file.file.read())
     return {"filename": file.filename, "message": "File uploaded successfully"}
->>>>>>> Stashed changes
