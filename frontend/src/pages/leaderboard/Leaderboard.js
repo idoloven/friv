@@ -72,23 +72,25 @@ export default function LeaderBoard() {
     },
     gamesBar:{
       display:'flex',
-      backgroundColor: 'rgba(255,255,255,0.9)',
+      backgroundColor: 'trasparent',
       width: '83%',
       paddingRight: '5vw',
-      borderColor: '#e7d3ed',
-      borderStyle: 'solid',
+      
       marginTop: '5vh',
     },
     gameTab:{
       color: 'black',
+      backgroundColor: 'rgba(255,255,255,0.9)',
       width: 'fit-content',
       paddingRight: '10px',
       paddingLeft: '10px',
       display: 'flex',
       cursor: 'pointer',
-      borderStyle: 'none',
+      borderColor: '#e7d3ed',
+      borderStyle: 'solid',
       fontSize: '20px',
       justifyContent: 'center',
+      marginRight: '2%',
     },
     selectedGameTab:{
       backgroundColor: '#e7d3ed', 
@@ -99,8 +101,10 @@ export default function LeaderBoard() {
       display: 'flex',
       justifyContent: 'center',
       cursor: 'pointer',
-      borderStyle: 'none',
-      fontSize: '20px'
+      borderColor: '#e7d3ed',
+      borderStyle: 'solid',
+      fontSize: '20px',
+      marginRight: '2%',
     },
   }
  
