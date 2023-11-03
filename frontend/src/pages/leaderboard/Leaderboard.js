@@ -75,7 +75,6 @@ export default function LeaderBoard() {
       backgroundColor: 'trasparent',
       width: '83%',
       paddingRight: '5vw',
-      
       marginTop: '5vh',
     },
     gameTab:{
@@ -91,6 +90,7 @@ export default function LeaderBoard() {
       fontSize: '20px',
       justifyContent: 'center',
       marginRight: '2%',
+      boxShadow: '2px 2px 0 #e7d3ed'
     },
     selectedGameTab:{
       backgroundColor: '#e7d3ed', 

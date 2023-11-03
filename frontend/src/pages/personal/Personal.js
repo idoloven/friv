@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import EditIcon from '@mui/icons-material/Edit';
 import IconButton from '@mui/material/IconButton';
+import StatsContainer from "../../components/stats/Stats";
 
 export default function Home() {
   const apiStaticProfilePicsFolder = "http://localhost:8000/static/user_profile_pics/"
@@ -18,7 +19,7 @@ export default function Home() {
     },
     mediumProfileImageStyle: {
       borderRadius: '100%',
-      height: '35%',
+      height: '30%',
       marginTop: '10px',
       aspectRatio: '1',
       marginBottom: '10px',
@@ -28,7 +29,8 @@ export default function Home() {
       backgroundSize: 'cover',
       borderStyle: 'solid',
       borderColor: 'white',
-    }
+    },
+
   }
 
   const VisuallyHiddenInput = styled('input')({
@@ -65,8 +67,9 @@ export default function Home() {
     .catch(error => {
         console.error(error);
     });
-};
+  };
 
+  let stats = [{'name':'score', 'value': 1234}, {'name':'time played', 'value': '2H'}, {'name':'games won', 'value': 44}, {'name':'games lost', 'value': 12}, {'name': 'random stat', 'value': 'random value'}]
 	return (
 		<div style = {style.window}>
       <div style={style.mediumProfileImageStyle}></div>
@@ -88,7 +91,7 @@ export default function Home() {
         </div>
 			{/* <input type="file" onChange={handleChange} /> */}
 			{/* <img src={file} alt="" /> */}
-
+        <StatsContainer stats={stats}></StatsContainer>
 		</div>
 
 	);
