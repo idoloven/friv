@@ -5,8 +5,11 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import EditIcon from '@mui/icons-material/Edit';
 import IconButton from '@mui/material/IconButton';
 import StatsContainer from "../../components/stats/Stats";
+import { useOutletContext } from "react-router-dom";
 
-export default function Home() {
+
+export default function Personal() {
+  const [games,] = useOutletContext();
   const apiStaticProfilePicsFolder = "http://localhost:8000/static/user_profile_pics/"
 
   const style = {
@@ -91,7 +94,7 @@ export default function Home() {
         </div>
 			{/* <input type="file" onChange={handleChange} /> */}
 			{/* <img src={file} alt="" /> */}
-        <StatsContainer stats={stats}></StatsContainer>
+        <StatsContainer stats={stats} games={games}></StatsContainer>
 		</div>
 
 	);

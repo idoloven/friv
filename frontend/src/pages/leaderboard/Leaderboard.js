@@ -85,12 +85,11 @@ export default function LeaderBoard() {
       paddingLeft: '10px',
       display: 'flex',
       cursor: 'pointer',
-      borderColor: '#e7d3ed',
-      borderStyle: 'solid',
       fontSize: '20px',
       justifyContent: 'center',
       marginRight: '2%',
-      boxShadow: '2px 2px 0 #e7d3ed'
+      borderStyle: 'none',
+      boxShadow: '3px 3px 0 #e7d3ed'
     },
     selectedGameTab:{
       backgroundColor: '#e7d3ed', 
@@ -101,10 +100,10 @@ export default function LeaderBoard() {
       display: 'flex',
       justifyContent: 'center',
       cursor: 'pointer',
-      borderColor: '#e7d3ed',
-      borderStyle: 'solid',
       fontSize: '20px',
       marginRight: '2%',
+      borderStyle: 'none',
+      boxShadow: '3px 3px 0 #9b679c',
     },
   }
  
