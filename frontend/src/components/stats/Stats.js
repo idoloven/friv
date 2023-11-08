@@ -46,6 +46,7 @@ const StatsContainer = ({ stats, games }) => {
             fontSize: '16px',
         },
         selectedGameTab: {
+            transition: '0.2s',
             minHeight: '10%',
             color: '#522a96',
             backgroundColor: 'white',

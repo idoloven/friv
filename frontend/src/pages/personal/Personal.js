@@ -6,6 +6,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import IconButton from '@mui/material/IconButton';
 import StatsContainer from "../../components/stats/Stats";
 import { useOutletContext } from "react-router-dom";
+import "./Personal.css"
 
 
 export default function Personal() {
@@ -32,8 +33,18 @@ export default function Personal() {
       backgroundSize: 'cover',
       borderStyle: 'solid',
       borderColor: 'white',
+      display: 'flex',
+      flexDirection: 'column',
+      cursor: 'pointer',
     },
-
+    editButtonStyle: { 
+      color: 'black',
+      backgroundColor: 'white',
+      marginTop:'auto',
+      marginRight: 'auto', 
+      marginLeft: '10px',
+      marginBottom: '10px'
+    },
   }
 
   const VisuallyHiddenInput = styled('input')({
@@ -75,23 +86,24 @@ export default function Personal() {
   let stats = [{'name':'score', 'value': 1234}, {'name':'time played', 'value': '2H'}, {'name':'games won', 'value': 44}, {'name':'games lost', 'value': 12}, {'name': 'random stat', 'value': 'random value'}]
 	return (
 		<div style = {style.window}>
-      <div style={style.mediumProfileImageStyle}></div>
-      <div style = {{display: 'flex', width: '100%', justifyContent: 'center'}}>
-        <div style={{fontSize:'30px', marginRight: '10px'}}>name</div>
-        <IconButton size='small' style={{ color: 'white'}}>
+      <button className="profileImage" style={style.mediumProfileImageStyle}>
+      <IconButton className="editButton" size='small' style={style.editButtonStyle}>
           <EditIcon />
         </IconButton>
+      </button>
+      <div style = {{display: 'flex', width: '100%', justifyContent: 'center'}}>
+        <div style={{fontSize:'30px', marginRight: '10px', color: 'white'}}>name</div>
         {/* <Button component="label" variant="contained" startIcon={<CloudUploadIcon />}>
           Upload file
           <VisuallyHiddenInput type="file" />
         </Button> */}
       </div>
-      <div>
+      {/* <div>
             <form onSubmit={handleSubmit}>
                 <input type="file" onChange={handleFileChange} />
                 <button type="submit">Upload</button>
             </form>
-        </div>
+        </div> */}
 			{/* <input type="file" onChange={handleChange} /> */}
 			{/* <img src={file} alt="" /> */}
         <StatsContainer stats={stats} games={games}></StatsContainer>

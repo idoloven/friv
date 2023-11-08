@@ -1,10 +1,12 @@
 import React from "react";
+import "./ProfileSquare.css";
 
 function ProfileSquare({player, displayedProfile, position}) {
     const apiStaticProfilePicsFolder = "http://localhost:8000/static/user_profile_pics/"
     const style = {
         profileStyle:{
             backgroundColor: 'black',
+            overflow: 'hidden',
             display: player.username === displayedProfile ? 'flex' : 'none',
             zIndex: '100',
             width: '25vw',
@@ -25,6 +27,7 @@ function ProfileSquare({player, displayedProfile, position}) {
             marginTop: '10px',
             marginBottom: '10px',
             marginRight: 'auto',
+            zIndex: '101',
             marginLeft: 'auto',
             backgroundImage: `url(${apiStaticProfilePicsFolder + player.profile_pic_name})`,
             backgroundSize: 'cover',
@@ -35,6 +38,87 @@ function ProfileSquare({player, displayedProfile, position}) {
     
     return (
       <div style={style.profileStyle}>
+        <div className="hexagons">
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          <div className="hexagon"></div>
+          </div>
           <div style={style.mediumProfileImageStyle}></div>
           <div>{player.username}</div>
       </div>

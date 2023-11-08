@@ -1,0 +1,16 @@
+
+.editButton {
+    color: black;
+    background-color: white;
+    margin-top: auto;
+    margin-right: auto;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.profileImage:hover .editButton {
+    background-color: grey; 
+}
+.editButton:hover  {
+    background-color: grey; 
+}
